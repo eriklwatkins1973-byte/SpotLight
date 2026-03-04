@@ -1,0 +1,78 @@
+name: Bug report
+description: Report a defect in Spotlight functionality.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please provide enough detail for fast triage.
+
+  - type: input
+    id: area
+    attributes:
+      label: Affected area
+      description: Which part is impacted?
+      placeholder: uploader, scout dashboard, API route, Supabase, Mux, Twelve Labs, Stripe
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Bug summary
+      placeholder: Describe what is wrong.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots
+      description: Paste relevant console output, API errors, or screenshots.
+      render: shell
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - low
+        - medium
+        - high
+        - critical
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security
+    attributes:
+      label: Security consideration
+      options:
+        - label: This may involve auth, RLS, payment, token leakage, or sensitive data

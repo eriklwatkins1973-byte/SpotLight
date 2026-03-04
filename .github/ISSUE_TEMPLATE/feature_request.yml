@@ -1,0 +1,58 @@
+name: Feature request
+description: Propose a new capability for Spotlight.
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose one clear feature request. Include user value and technical scope.
+
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Primary audience
+      options:
+        - Filmmaker
+        - Scout
+        - Cinephile
+        - Platform Operator
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      placeholder: What user problem does this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: Describe behavior, UX, and expected outcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical
+    attributes:
+      label: Technical notes
+      description: Mention likely API routes, DB tables, integrations, or migrations.
+      placeholder: videos/cinematic_tags changes, Mux webhook, Twelve Labs task pipeline, Stripe flow
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I checked for existing issues covering this request
+        - label: I included product impact and technical context
