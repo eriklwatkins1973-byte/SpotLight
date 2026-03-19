@@ -1,0 +1,21 @@
+import { createIndexingTask } from '@/lib/twelveLabs';
+
+export async function POST(req: Request) {
+  const { videoUrl, title } = await req.json();
+
+  // 1. Trigger the Twelve Labs Indexing Task
+  const task = await createIndexingTask(videoUrl);
+
+  // 2. Store the Task ID in your database (Supabase)
+  // This allows the UI to poll for updates without keeping the connection open
+  const { data, error } = await supabase
+    .from('videos')
+    .insert({
+      title,
+      mux_url: videoUrl,
+      twelve_labs_task_id: task.id,
+      status: 'indexing'
+    });
+
+  return Response.json({ taskId: task.id });
+}
