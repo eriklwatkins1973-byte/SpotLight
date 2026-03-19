@@ -1,0 +1,32 @@
+// lib/twelveLabs.ts
+const API_KEY = process.env.TWELVELABS_API_KEY;
+const INDEX_ID = process.env.TWELVELABS_DEFAULT_INDEX_ID;
+const BASE_URL = 'https://api.twelvelabs.io/v1.2';
+
+export async function createIndexingTask(videoUrl: string) {
+  const res = await fetch(`${BASE_URL}/tasks`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY! },
+    body: JSON.stringify({
+      index_id: INDEX_ID,
+      video_url: videoUrl, // Passing the Mux URL for high-speed transfer
+      engines: [{ engine_name: 'marengo2.6', engine_options: ['visual', 'conversation'] }],
+    }),
+  });
+  return res.json();
+}
+
+export async function getTaskStatus(taskId: string) {
+  const res = await fetch(`${BASE_URL}/tasks/${taskId}`, {
+    headers: { 'x-api-key': API_KEY! },
+  });
+  return res.json();
+}
+
+export async function getCinematicInsights(videoId: string) {
+  // Fetches the specific visual features detected by the AI
+  const res = await fetch(`${BASE_URL}/indexes/${INDEX_ID}/videos/${videoId}/features`, {
+    headers: { 'x-api-key': API_KEY! },
+  });
+  return res.json();
+}
